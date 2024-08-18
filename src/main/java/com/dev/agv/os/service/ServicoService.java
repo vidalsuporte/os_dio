@@ -11,26 +11,30 @@ import java.util.List;
 public class ServicoService {
 
 @Autowired
-ServicoRepository ServicoRepository;
+ServicoRepository servicoRepository;
 
 public void save(Servico servico){
-    ServicoRepository.save(servico);
-}
+    if(servicoRepository.existsByNome(servico.getNome())){
+        throw new IllegalArgumentException();
+    }else {
+        servicoRepository.save(servico);
+    }
+    }
 
 public void deleteById(Long id){
-    ServicoRepository.deleteById(id);
+    servicoRepository.deleteById(id);
 }
 
 public List<Servico> findAll(){
-    return ServicoRepository.findAll();
+    return servicoRepository.findAll();
 }
 
 public Servico findById(Long id){
-    return ServicoRepository.findById(id).orElseThrow();
+    return servicoRepository.findById(id).orElseThrow();
 }
 
 public  Servico findByNome(String nome){
-    return ServicoRepository.findByNome(nome);
+    return servicoRepository.findByNome(nome);
 }
 
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.IllegalFormatException;
 import java.util.List;
 
 @Service
@@ -32,8 +33,9 @@ public OrdemDeServico findById(Long id){
     return ordemDeServicoRepository.findById(id).orElseThrow();
 }
 
-public  List<OrdemDeServico> findByDataOS(LocalDate data){
-    return ordemDeServicoRepository.findByDataOS(data);
+public  List<OrdemDeServico> findByDataOS(String dataStr) throws IllegalFormatException {
+           LocalDate dataOS = LocalDate.parse(dataStr);
+       return ordemDeServicoRepository.findByDataOS(dataOS);
 }
 
 

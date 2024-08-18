@@ -9,4 +9,5 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     public Servico findByNome(String nome);
 
 
+   public boolean existsByNome(String nome);
 }

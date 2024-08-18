@@ -3,7 +3,6 @@ package com.dev.agv.os.service;
 import com.dev.agv.os.model.Cliente;
 import com.dev.agv.os.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,14 @@ public class ClienteService {
 
     public void save(Cliente cliente){
 
-        clienteRepository.save(cliente);
+        if(clienteRepository.existsByNome(cliente.getNome())){
+            throw new IllegalArgumentException("cliente já cadastrado");
+        }else {
+            clienteRepository.save(cliente);
+        }
+
+
+
     }
 
     public List<Cliente> findAll(){
@@ -31,7 +37,7 @@ public class ClienteService {
         return clienteRepository.findById(id).orElseThrow();
     }
 
-    public  Cliente findByNome(String nome){
+    public Cliente findByNome(String nome){
         return clienteRepository.findByNome(nome);
     }
 

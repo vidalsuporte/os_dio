@@ -38,10 +38,10 @@ public void save( @RequestBody OrdemDeServico ordemDeServico){
 @GetMapping("/servico/{dataStr}")
 
     public  List<OrdemDeServico> findByDataOS(@PathVariable String dataStr){
-    LocalDate dataOS = LocalDate.parse(dataStr);
 
 
-    return  ordemDeServicoService.findByDataOS(dataOS);
+
+    return  ordemDeServicoService.findByDataOS(dataStr);
 }
 
 @DeleteMapping("/{id}")
