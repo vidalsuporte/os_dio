@@ -1,1 +1,1 @@
-web: java -jar
+web: java -jar out/artifacts/os_jar/os.jar
